@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'products.apps.ProductsConfig',
     'orders.apps.OrdersConfig',
     'rest_framework',
+    'rest_framework_simplejwt',
     'cloudinary_storage',
     'cloudinary',
     'corsheaders',
@@ -143,7 +144,7 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 CROS_ALLOWED_ORIGIN = [
-    'http://localhost:8080'
+    'http://localhost:8080',
     'http://172.0.0.1:8080'
 ]
 CORS_ALLOW_ALL_ORIGINS = True

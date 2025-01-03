@@ -294,7 +294,7 @@ class BookUpdateView(APIView):
             return Response(CustomBookSerializer(book).data)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 @api_view(['POST', 'PUT'])
-@csrf_exempt
+
 @permission_classes([IsAuthenticated])
 
 def category_view(request, category_id=None):

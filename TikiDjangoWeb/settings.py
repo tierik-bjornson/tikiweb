@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'products.apps.ProductsConfig',
     'orders.apps.OrdersConfig',
     'rest_framework',
+    'rest_framework_simplejwt',
     'cloudinary_storage',
     'cloudinary',
     'corsheaders',
@@ -85,7 +86,7 @@ REST_FRAMEWORK = {
 }
 
 SIMPLE_JWT = {
-    'AUTH_TOKEN_CLASSES': ('rest_framework_simple_jwt.token.AccessToken',),
+    'AUTH_TOKEN_CLASSES': ('rest_framework_simplejwt.tokens.AccessToken',),
     'ACCESS_TOKEN_LIFETIME': timedelta(days=14),
     'REFRESH_TOKEN_LIFETIME': timedelta(days=30),
 }
@@ -143,7 +144,7 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 CROS_ALLOWED_ORIGIN = [
-    'http://localhost:8080'
+    'http://localhost:8080',
     'http://172.0.0.1:8080'
 ]
 CORS_ALLOW_ALL_ORIGINS = True

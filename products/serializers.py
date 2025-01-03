@@ -27,7 +27,7 @@ class CartItemSerializer(serializers.ModelSerializer):
         model = CartItem
         fields = '__all__'
 class BookSerializer1(serializers.ModelSerializer):
-    categories = CategorySerializer(many = True, read_oly = True)
+    categories = CategorySerializer(many = True, read_only = True)
     
     class Meta:
         model = Book

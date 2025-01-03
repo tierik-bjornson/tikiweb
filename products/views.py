@@ -12,12 +12,12 @@ from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.http import require_http_methods
 from rest_framework import viewsets, status
 from rest_framework.authentication import TokenAuthentication
-from rest_framework.decorators import actions, api_view, permission_classes, authentication_classes
+from rest_framework.decorators import action, api_view, permission_classes, authentication_classes
 from rest_framework.permissions import IsAuthenticated, AllowAny
 from rest_framework.response import Response
 from django.db.models import F, Q, Prefetch
 from rest_framework.views import APIView
-from user.models import User
+from users.models import User
 from .models import Book, Image, Category, CartItem
 from .serializers import CategorySerializer, ImageSerializer, BookSerializer, \
     CartItemSerializer, BookSerializer1, CategorySerializer1, CustomBookSerializer
@@ -154,7 +154,7 @@ class CartItemViewSet(viewsets.ModelViewSet):
             return Response({"detail": "Cart item updated successfully"}, status=status.HTTP_200_OK)
         except Exception as e:
             return Response({"detail": str(e)}, status=status.HTTP_400_BAD_REQUEST)
-    @actions(detail = False, methods = ['get'], url_path = 'user/(?P<id_user>\d+)')
+    @action(detail = False, methods = ['get'], url_path = 'user/(?P<id_user>\d+)')
     def get_cart_by_user(self, request, id_user = None):
         if str(request.user.id) != id_user:
             return Response({"detail": "Don't have permission to view this"}, status=status.HTTP_403_FORBIDDEN)

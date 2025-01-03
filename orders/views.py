@@ -11,7 +11,7 @@ from rest_framework.response import Response
 
 from .models import Order, OrderDetail, Payment, Delivery
 from products.models import Book
-from user.models import User
+from users.models import User
 import json
 from decimal import Decimal
 from django.conf import settings

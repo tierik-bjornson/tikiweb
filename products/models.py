@@ -1,5 +1,5 @@
 from django.db import models
-from user.models import User
+from users.models import User
 
 class Category(models.Model):
     id_category = models.AutoField(primary_key=True)
@@ -44,7 +44,7 @@ class Image(models.Model):
     is_thumbnail = models.BooleanField(default=False)
     url_image = models.URLField(max_length=512)
     data_image = models.TextField()
-    id_book = models.ForeignKey(Book, on_delete=models.CASCADE, related_name='images', db_colum = 'id_book')
+    id_book = models.ForeignKey(Book, on_delete=models.CASCADE, related_name='images', db_column = 'id_book')
     def __str__(self):
         return f"{self.name_image} - {self.id_book.name_book}"
     

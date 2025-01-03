@@ -1,5 +1,5 @@
 from django.db import models
-from user.models import User
+from users.models import User
 from products.models import Book
 
 class Payment(models.Model):

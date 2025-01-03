@@ -32,7 +32,7 @@ class BookSerializer1(serializers.ModelSerializer):
     class Meta:
         model = Book
         fields = [
-            'id_book', 'name_book', 'author', 'description', 'list_price', 'sell_price', 
+            'id_book', 'name_book', 'isbn', 'author', 'description', 'list_price', 'sell_price', 
             'quantity', 'sold_quantity', 'avg_rating', 'discount_percent', 'categories']
     
     def to_representation(self, instance):
@@ -71,10 +71,10 @@ class CustomBookSerializer(serializers.ModelSerializer):
     avgRating = serializers.FloatField(source = 'avg_rating', allow_null = True)
     soldQuantity = serializers.IntegerField(source = 'sold_quantity', allow_null = True)
     discountPercent = serializers.IntegerField(source = 'discount_percent')
-    idGenres = serializers.ListField(source = serializers.IntegerField(), write_only = True)
+    idGenres = serializers.ListField(child = serializers.IntegerField(), write_only = True)
     thumbnail = serializers.CharField(write_only = True)
-    relatedImg = serializers.ListField(source = serializers.CharField(), write_only= True)
-    
+    relatedImg = serializers.ListField(child = serializers.CharField(), write_only= True)
+    ISBN = serializers.CharField(source = "isbn", required = False, allow_null = True, default = "a")
     class Meta:
         model = Book
         fields = [

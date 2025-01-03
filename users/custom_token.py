@@ -3,16 +3,16 @@ from rest_framework_simplejwt.views import TokenObtainPairView
 
 class CustomTokenObtainPairSerializer(TokenObtainPairSerializer):
     @classmethod
-    def get_token(cls, user):
-        token = super().get_token(user)
+    def get_token(cls, users):
+        token = super().get_token(users)
 
-        token['username'] = user.username
-        token['email'] = user.email
-        token['is_staff'] = user.is_staff
-        token['is_superuser'] = user.is_superuser
-        token['id'] = user.id
-        token['avatar'] = user.avatar.url if user.avatar else None
-        if user.is_superuser:
+        token['username'] = users.username
+        token['email'] = users.email
+        token['is_staff'] = users.is_staff
+        token['is_superuser'] = users.is_superuser
+        token['id'] = users.id
+        token['avatar'] = users.avatar.url if users.avatar else None
+        if users.is_superuser:
             token['role'] = "ADMIN"
         else :
             token['role'] = "CUSTOMER"

@@ -133,8 +133,9 @@ class CartItemViewSet(viewsets.ModelViewSet):
                             'nameBook': book.name_book,
                         }
                     })
-            if len(data) ==1:
+            if len(data) == 1:
                 return Response({'idCart': added_items[0]['idCart']}, status= status.HTTP_400_BAD_REQUEST)
+            return Response(status=status.HTTP_200_OK)
         except Exception as e:
             print(e)
             return Response({"detail": str(e)}, status=status.HTTP_400_BAD_REQUEST)
@@ -146,7 +147,7 @@ class CartItemViewSet(viewsets.ModelViewSet):
             
             cart_item = get_object_or_404(CartItem, id_cart = id_cart)
             
-            if request.user.id != cart_item.user.id:
+            if request.user.id != cart_item.id_user.id:
                 return Response({"detail": "Don't have permission to modify this"}, status=status.HTTP_403_FORBIDDEN) 
             
             cart_item.quantity = quantity
@@ -173,7 +174,7 @@ class CartItemViewSet(viewsets.ModelViewSet):
                 }   
             })
             
-        return Response(formatted_items, status=status.HTTP_200_OK)
+        return Response(formatted_items)
     
     @action(detail = True, methods = ['get'], url_path = 'book')
     def get_book_info(self, request, pk = None):

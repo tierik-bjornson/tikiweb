@@ -86,7 +86,7 @@ REST_FRAMEWORK = {
 }
 
 SIMPLE_JWT = {
-    'AUTH_TOKEN_CLASSES': ('rest_framework_simple_jwt.token.AccessToken',),
+    'AUTH_TOKEN_CLASSES': ('rest_framework_simplejwt.tokens.AccessToken',),
     'ACCESS_TOKEN_LIFETIME': timedelta(days=14),
     'REFRESH_TOKEN_LIFETIME': timedelta(days=30),
 }

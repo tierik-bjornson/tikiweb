@@ -1,5 +1,6 @@
 from django.db import models
 from users.models import User
+from rest_framework import serializers
 
 class Category(models.Model):
     id_category = models.AutoField(primary_key=True)
@@ -17,18 +18,20 @@ class Book(models.Model):
     sold_quantity = models.IntegerField()
     avg_rating = models.DecimalField(max_digits=3, decimal_places=2, default=0)
     discount_percent = models.DecimalField(max_digits=5, decimal_places=2, default=0)
-    categories = models.ManyToManyField(Category, through='BookCategory')    
+    categories = models.ManyToManyField(Category, through='BookCategory')   
+    isbn = models.CharField(max_length= 256, null= True, blank= True)
     def __str__(self):
         return self.name_book
-    def to_dict(seft):
+    def to_dict(self):
         return {
-            'idBook': seft.id_book,
-            'nameBook': seft.name_book,
-            'author': seft.author,
-            'listPrice': seft.list_price,
-            'sellPrice': seft.sell_price,
-            'quantity': seft.quantity,
-            'soldQuantity': seft.sold_quantity
+            'idBook': self.id_book,
+            'nameBook': self.name_book,
+            'author': self.author,
+            'listPrice': self.list_price,
+            'sellPrice': self.sell_price,
+            'quantity': self.quantity,
+            'soldQuantity': self.sold_quantity,
+            'isbn':self.isbn
         }
 
 class BookCategory(models.Model):

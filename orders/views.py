@@ -68,14 +68,14 @@ def add_order(request):
         return Response({'message': 'Order created successfully'}, status=status.HTTP_201_CREATED)
     except Exception as e:
         print(e)
-        return Response({'error': 'Failed to create order'}, status=status.HTTP_400_BAD_REQUEST)
+        return Response({'error': str(e)}, status=status.HTTP_400_BAD_REQUEST)
 
 class VnpayConfig:
     vnp_TmnCode = 'LXKRH0ZN'
     vnp_Version = '2.1.0'
     vnp_Command = 'pay'
     vnp_PayUrl = 'https://sandbox.vnpayment.vn/paymentv2/vpcpay.html'
-    vnp_ReturnUrl = 'http://localhost:3000/check-out/status'
+    vnp_ReturnUrl = 'https://www.google.com.vn/'
     secretKey = 'JJHU2TIN2ANY6GMPJTWUWAVBGNVWZHPW'
 
     @staticmethod

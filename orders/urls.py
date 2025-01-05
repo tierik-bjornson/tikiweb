@@ -4,7 +4,7 @@ from .views import add_order, create_payment, get_all_orders, get_all_orders_by_
 
 urlpatterns = [
     path('order/add-order', add_order, name='add_order'),
-    path('vnpay/create-payment', create_payment, name='create_payment'),
+    path('vnpay/create-payment/', create_payment, name='create_payment'),
     path('orders/', get_all_orders, name='get_all_orders'),
     path('users/<int:user_id>/orderList/', get_all_orders_by_user, name='get_all_orders_by_user'),
     path('orders/<int:order_id>/', get_single_order, name='get_single_order'),

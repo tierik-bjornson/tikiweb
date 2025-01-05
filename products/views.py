@@ -58,6 +58,13 @@ class BookViewSet(viewsets.ModelViewSet):
         serializer = self.get_serializer(books, many = True)
         return Response(serializer.data, status=status.HTTP_200_OK)
 
+    @action(detail=True, methods=['get'])
+    def details_books(self, request, pk = None):
+        book = self.get_object()
+        serializer = self.get_serializer(book)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+    
+    
 class CategoryViewSet(viewsets.ModelViewSet):
     queryset = Category.objects.all()
     serializer_class = CategorySerializer
